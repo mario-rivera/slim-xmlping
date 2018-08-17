@@ -7,9 +7,8 @@ use App\Routing\Router;
 
 class Voiceworks extends PHPdi
 {
-    protected function configureContainer(ContainerBuilder $builder)
-    {
-        libxml_use_internal_errors(true);
+    protected function configureContainer(ContainerBuilder $builder){
+        
         $builder->addDefinitions(__DIR__ . '/config/definitions.php');
     }
 

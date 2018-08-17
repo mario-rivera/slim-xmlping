@@ -51,8 +51,6 @@ class ValidPingRequest{
 
         }catch(InvalidType $e){
             return $this->xmlErrorResponse->respond($response, 422, $e->getMessage());
-        }catch(Exception $e){
-            return $this->xmlErrorResponse->respond($response, 500, $e->getMessage());
         }
 
         return $next($request, $response);

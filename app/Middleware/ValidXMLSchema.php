@@ -50,8 +50,6 @@ class ValidXMLSchema{
 
         }catch(InvalidSchema $e){
             return $this->xmlErrorResponse->respond($response, 400, "The document received does not conform to the schema.");
-        }catch(Exception $e){
-            return $this->xmlErrorResponse->respond($response, 500, $e->getMessage());
         }
 
         return $next($request, $response);

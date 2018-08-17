@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'errorHandler' => DI\autowire(App\ErrorHandlers\ErrorHandler::class),
     App\Routing\Router::class => DI\autowire(App\Routing\Router::class),
     App\XML\interfaces\iXMLValidator::class => DI\autowire(App\XML\XMLValidator::class),
     App\XML\interfaces\iXMLSchemaValidator::class => DI\autowire(App\XML\XMLSchemaValidator::class)

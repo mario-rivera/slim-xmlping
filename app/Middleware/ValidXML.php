@@ -58,8 +58,6 @@ class ValidXML{
 
         }catch(InvalidDocument $e){
             return $this->xmlErrorResponse->respond($response, 400, "The document received is not valid XML.");
-        }catch(Exception $e){
-            return $this->xmlErrorResponse->respond($response, 500, $e->getMessage());
         }
 
         return $next($request, $response);
