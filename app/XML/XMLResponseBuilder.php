@@ -2,6 +2,7 @@
 namespace App\XML;
 use DOMDocument;
 use App\XML\interfaces\iXMLResponse;
+use Exception;
 
 class XMLResponseBuilder implements iXMLResponse{
 
@@ -33,7 +34,12 @@ class XMLResponseBuilder implements iXMLResponse{
     public function load(){
 
         $file = $this->getXmlPath() . DIRECTORY_SEPARATOR . $this->type . '.xml';
-        return $this->dom->load($file, LIBXML_NOERROR);
+        if( !$this->dom->load($file, LIBXML_NOERROR) ){
+
+            throw new Exception("Response file not found. Type: {$this->type}");
+        }
+
+        return true;
     }
 
     public function getResponse(){

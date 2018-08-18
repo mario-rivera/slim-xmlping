@@ -1,10 +1,7 @@
 <?php
 namespace App\XML;
 use App\XML\interfaces\iXMLResponseBuilderFactory;
-
-use App\XML\XMLNackResponse;
-use App\XML\XMLPingResponse;
-use App\XML\XMLReverseResponse;
+use App\XML\XMLResponseTypes;
 
 class XMLResponseBuilderFactory implements iXMLResponseBuilderFactory{
 
@@ -27,20 +24,12 @@ class XMLResponseBuilderFactory implements iXMLResponseBuilderFactory{
 
     private function getResponseType($type){
 
-        switch(strtolower($type)){
-
-            case 'ping_response':
-                return new XMLPingResponse();
-            break;
-
-            case 'reverse_response':
-                return new XMLReverseResponse();
-            break;
-
-            case 'nack':
-            default:
-                return new XMLNackResponse();
-            break;
+        //default response
+        $class = XMLResponseTypes::Types[XMLResponseTypes::NACK];
+        if(array_key_exists($type, XMLResponseTypes::Types)){
+            $class = XMLResponseTypes::Types[$type];
         }
+
+        return new $class;
     }
 }
